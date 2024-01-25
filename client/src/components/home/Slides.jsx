@@ -87,7 +87,9 @@ const Slide = ({ products, title, timer }) => {
         </ViewAllButton>
       </Deal>
       <Divider />
-      {products && products.length > 0 ? (
+       {(!products || products.length === 0) ? (
+        <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', color: '#ff0000' }}>Sold out</p>
+      ) : (
         <Carousel
           responsive={responsive}
           swipeable={false}
@@ -116,9 +118,7 @@ const Slide = ({ products, title, timer }) => {
             </Link>
           ))}
         </Carousel>
-      ) : (
-        <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', color: '#000000' }}>Sold out</p>
-      )}
+      )} 
     </Component>
   );
 };
