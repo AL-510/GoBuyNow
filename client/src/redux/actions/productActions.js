@@ -6,6 +6,10 @@ const URL = 'http://localhost:8000';
 
 export const getProducts = () => async (dispatch) => {
     try {
+        const response = await axios.get(`${URL}/products`);
+console.log('API Response:', response);
+
+const { data } = response;
         const {data}  = await axios.get(`${URL}/products`);
 
         dispatch({type: actionTypes.GET_PRODUCTS_SUCCESS, payload: data})
