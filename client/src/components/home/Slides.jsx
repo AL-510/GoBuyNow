@@ -87,34 +87,38 @@ const Slide = ({ products, title, timer }) => {
         </ViewAllButton>
       </Deal>
       <Divider />
-      <Carousel
-        responsive={responsive}
-        swipeable={false}
-        draggable={false}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={4000}
-        keyBoardControl={true}
-        centerMode={true}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-        containerClass="carousel-container"
-      >
-        {products?.map((product) => (
-          <Link to={`product/${product.id}`} style={{textDecoration: 'none'}}>
-            <Box textAlign="center" style={{ padding: "25px 15px" }}>
-              <Image src={product.url} alt="product" />
-              <Text style={{ fontWeight: 600, color: "#212121" }}>
-                {product.title.shortTitle}
-              </Text>
-              <Text style={{ color: "green" }}>{product.discount}</Text>
-              <Text style={{ color: "#212121", opacity: "0.6" }}>
-                {product.tagline}
-              </Text>
-            </Box>
-          </Link>
-        ))}
-      </Carousel>
+      {products && products.length > 0 ? (
+        <Carousel
+          responsive={responsive}
+          swipeable={false}
+          draggable={false}
+          infinite={true}
+          autoPlay={true}
+          autoPlaySpeed={4000}
+          keyBoardControl={true}
+          centerMode={true}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+          containerClass="carousel-container"
+        >
+          {products.map((product) => (
+            <Link key={product.id} to={`product/${product.id}`} style={{ textDecoration: 'none' }}>
+              <Box textAlign="center" style={{ padding: "25px 15px" }}>
+                <Image src={product.url} alt="product" />
+                <Text style={{ fontWeight: 600, color: "#212121" }}>
+                  {product.title.shortTitle}
+                </Text>
+                <Text style={{ color: "green" }}>{product.discount}</Text>
+                <Text style={{ color: "#212121", opacity: "0.6" }}>
+                  {product.tagline}
+                </Text>
+              </Box>
+            </Link>
+          ))}
+        </Carousel>
+      ) : (
+        <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', color: '#000000' }}>Sold out</p>
+      )}
     </Component>
   );
 };
